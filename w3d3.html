@@ -3574,6 +3574,24 @@ When you press the button on the hello fdti it should print "print" on the gtk t
 Now to send from computer side : Open SerialMonitor from the arduino and send "c" to the ttyUSB0. The LED should blink.<br>
 &nbsp; <br>
 <br>
+
+<b>update 19/11/2015</b><br />
+<b>Making two board communicate with each other</b> <br />
+I made a fabduino in week 4. and now going to try to make the fabduino(more info at http://puneethrj.github.io/w4d1.html&nbsp;&nbsp; and http://puneethrj.github.io/w4d2.html) and helloftdi wih led communicate with each other. As an indication I'm going to use the leds on the boards.<br />
+The code in hello ftdi remain the same as above. the following code needs to be uploaded to fabduino. The following code allows the fabduino to light up the led in the helloftdi in same frequency as the led in fabduino blink/ I have built upon the example code of blink from arduino ide for this.<br />
+<br />
+To power the board and communicate I use the power from ftdi cable connected to the fabuino(to program it and after downloading keep it connected) and also the rx and tx from the same ftdi connection. You can either make a temporary solder for this or use jumper wires t o plug it into the holes behinf each terminal in ftdi connector towards the fabduino side.<br />
+Match the tx and rx of the helloftdi with fabduino, its not the opposite.<br />
+<b>code:</b><br />
+<b>&nbsp;</b><i><b><span style="font-size: x-small;">#include &lt;SoftwareSerial.h&gt;</span></b></i> <br />
+<span style="font-size: x-small;"><b>void setup() {<br />&nbsp; // initialize digital pin 13 as an output.<br />&nbsp; pinMode(13, OUTPUT);</b></span><br />
+<br /><span style="font-size: x-small;"><b><i><b><span style="font-size: x-small;">Serial.begin(9600);</span></b></i></b></span><br />
+<span style="font-size: x-small;"><b><i><b><span style="font-size: x-small;">&nbsp;</span></b></i>}<br /><br />// the loop function runs over and over again forever<br />void loop() {<br />&nbsp; digitalWrite(13, HIGH);&nbsp;&nbsp; // turn the LED on (HIGH is the voltage level)</b></span><br />
+<i><b><span style="font-size: x-small;">Serial.print("c");</span></b></i><span style="font-size: x-small;"><b><br />&nbsp; delay(1000);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // wait for a second<br />&nbsp; digitalWrite(13, LOW);&nbsp;&nbsp;&nbsp; // turn the LED off by making the voltage LOW</b></span><span style="font-size: x-small;"><b><i><b><span style="font-size: x-small;">Serial.print("d");</span></b></i><span style="font-size: x-small;"><b><br /></b></span>&nbsp;</b></span><br />
+<span style="font-size: x-small;"><b>&nbsp; delay(1000);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // wait for a second<br />}</b></span><br />
+<br />
+This program worked and the led on helloftdi blinked in same frequency as the fabduino</div>
+
 <br></div>
 </div>
 
